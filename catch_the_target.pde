@@ -3,13 +3,16 @@ import controlP5.*;
 ControlP5 gui;
 
 StartScreen startScreen;
+GameScreen gameScreen;
 
 void setup() {
-    size(800,600);
+    size(1200,800);
+    pixelDensity(pixelDensity);
     textAlign(CENTER,CENTER);
     
     gui = new ControlP5(this);
     startScreen = new StartScreen(gui);
+    gameScreen = new GameScreen();
 }
 
 void draw() {
@@ -17,14 +20,15 @@ void draw() {
     //start
     if (!startScreen.gameStarted){
       startScreen.display();
+    } else{
+      //game
+      gameScreen.display();
     }
-    //game
     
     //game over
 }
 
 public void controlEvent(ControlEvent event){
-
   String eventName = event.getController().getName();
   switch(eventName){
     case "Start Game":
@@ -33,6 +37,5 @@ public void controlEvent(ControlEvent event){
     case "Get me outta here!":
       exit();
     break;
-  }
-  
+  } 
 }
