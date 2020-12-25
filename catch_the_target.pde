@@ -6,7 +6,7 @@ StartScreen startScreen;
 GameScreen gameScreen;
 
 void setup() {
-    size(1200,800);
+    fullScreen();
     pixelDensity(pixelDensity);
     textAlign(CENTER,CENTER);
     
