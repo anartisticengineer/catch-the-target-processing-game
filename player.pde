@@ -5,7 +5,7 @@ class Player{
   Player(){
     pos = new PVector(width/2,height/2);
     dir = new PVector(0,0);
-    speed = 5.0;
+    speed = 10.0;
   }
   
   public void switchDirection(){
@@ -29,7 +29,11 @@ class Player{
   }
   
   public void speedUp(){
-    speed += 0.2;
+    speed *= 1.01;
+  }
+  
+  public void slowDown(){
+    speed *= 0.8;
   }
   
   public void update(){
@@ -41,11 +45,15 @@ class Player{
   
   public void display(){
     pushStyle();
+    noStroke();
     circle(pos.x,pos.y,100);
     popStyle();
   }
   
   public PVector getPos(){
     return pos;
+  }
+  public boolean outOfBounds(){
+    return pos.x < 0 || pos.x > width || pos.y < 0 || pos.y > height;
   }
 }

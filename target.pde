@@ -13,7 +13,10 @@ class RegularTarget implements Target{
     pos.set(new PVector(random(width*0.2,width*0.8),random(height*0.2,height*0.8)));
   }
   public void display(){
+    pushStyle();
+    fill(#dddddd);
     circle(pos.x,pos.y,circleSize);
+    popStyle();
   }
   public PVector getPos(){
     return pos;
@@ -29,7 +32,10 @@ class BonusTarget implements Target{
   }
   
   public void display(){
+    pushStyle();
+    fill(#FFCD00);
     circle(pos.x,pos.y,circleSize);
+    popStyle();
   }
   public PVector getPos(){
     return pos;
@@ -47,7 +53,10 @@ class FreezeTarget implements Target{
   }
   
   public void display(){
+    pushStyle();
+    fill(#00CEFF);
     circle(pos.x,pos.y,circleSize);
+    popStyle();
   }
   public PVector getPos(){
     return pos;
@@ -68,7 +77,10 @@ class BadTarget implements Target{
     lifespan -= 0.05;
   }
   public void display(){
+    pushStyle();
+    fill(#FF00A6);
     circle(pos.x,pos.y,circleSize);
+    popStyle();
   }
   public PVector getPos(){
     return pos;

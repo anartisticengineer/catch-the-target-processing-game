@@ -21,10 +21,9 @@ void draw() {
     if (!startScreen.gameStarted){
       startScreen.display();
     } else{
-      //game
-      gameScreen.display();
-    }
-    
+    //game
+      gameScreen.run();
+    }   
     //game over
 }
 
