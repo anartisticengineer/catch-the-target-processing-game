@@ -1,6 +1,8 @@
 <h1>Catch The Target (WIP)</h1>
 <h2>(Sorry I can't think of a more creative name)</h2>
 
+<strong>NOTE: this game includes the ControlP5 library~ensure you have it installed in Processing before starting.</strong>
+
 <p>A small game created using Processing. The objective (and controls) are simple:</p>
 
 <p>Catch the target as it appears on the screen. Hitting the target will place the next one on a new random spot.</p>

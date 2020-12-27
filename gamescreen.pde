@@ -2,13 +2,14 @@ public class GameScreen{
   
   private int score,targetType;
   Player p1;
+  GameOverScreen gameOverScreen;
   private Target [] targets = {new RegularTarget(),new BonusTarget(),new FreezeTarget(),new BadTarget()};
   private boolean gameOver;
-  ControlP5 gui;
   
-  GameScreen(PApplet p){
-    gui = new ControlP5(p);
+  GameScreen(PFont f){
+    textFont(f);
     reset();
+    gameOverScreen = new GameOverScreen();
   }
   
   private void hud(){
@@ -42,7 +43,7 @@ public class GameScreen{
         if (targetType == 2){
           p1.slowDown();
         } else if (targetType == 3){
-          gameOver();
+          gameOver(); //player hit the bad target! :(
         } else {
           p1.speedUp();
         } 
@@ -59,7 +60,17 @@ public class GameScreen{
         gameOver();
       }
     } else{
-      text("GAME OVER!\nScore: "+str(score),width/2,height/2);
+      //game is over!
+      gameOverScreen.display(score);
+      if (keyPressed){
+        if (key == 'R' || key == 'r'){
+          gameOverScreen.restarted();
+          reset();
+        }
+        else if (key == 'X' || key == 'x'){
+          exit();
+        }
+      }
     }
   }
   //register the hit of the target
@@ -76,7 +87,6 @@ public class GameScreen{
     targetType = 0;
     p1 = new Player();
     gameOver = false;
-    gui.addButton("Pause").setPosition(width-100,0).setSize(100,100);
   }
   
   public void gameOver(){
