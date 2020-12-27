@@ -4,8 +4,10 @@ public class GameScreen{
   Player p1;
   private Target [] targets = {new RegularTarget(),new BonusTarget(),new FreezeTarget(),new BadTarget()};
   private boolean gameOver;
+  ControlP5 gui;
   
-  GameScreen(){
+  GameScreen(PApplet p){
+    gui = new ControlP5(p);
     reset();
   }
   
@@ -15,8 +17,8 @@ public class GameScreen{
   }
   
   public void nextTarget(){
-    if (score % 10 == 0 && score > 0){
-      //choose a special every 
+    if (score % 20 > 15 && score > 0){
+      //choose a special target
       targetType = round(random(1,3));
     } else {
       targetType = 0;
@@ -29,12 +31,18 @@ public class GameScreen{
     if (gameOver == false){
       hud();
       targets[targetType].display();
+      if(targetType == 3 && targets[targetType].isDone()){
+        nextTarget();
+      }
+      //registered hits
       if (hitTarget()){
         //bonus target
-        score+=(targetType == 1)?5:1;
+        score+=(targetType == 1)?5*int(p1.speed):int(p1.speed);
         //freeze target
         if (targetType == 2){
           p1.slowDown();
+        } else if (targetType == 3){
+          gameOver();
         } else {
           p1.speedUp();
         } 
@@ -68,6 +76,7 @@ public class GameScreen{
     targetType = 0;
     p1 = new Player();
     gameOver = false;
+    gui.addButton("Pause").setPosition(width-100,0).setSize(100,100);
   }
   
   public void gameOver(){

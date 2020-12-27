@@ -5,7 +5,7 @@ class Player{
   Player(){
     pos = new PVector(width/2,height/2);
     dir = new PVector(0,0);
-    speed = 10.0;
+    speed = 15.0;
   }
   
   public void switchDirection(){
@@ -23,13 +23,12 @@ class Player{
         dir.set(1,0);
       break;
       default:
-        dir.set(0,0);
       break;
     }
   }
   
   public void speedUp(){
-    speed *= 1.01;
+    speed *= 1.05;
   }
   
   public void slowDown(){

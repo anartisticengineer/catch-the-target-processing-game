@@ -9,10 +9,11 @@ void setup() {
     fullScreen();
     pixelDensity(pixelDensity);
     textAlign(CENTER,CENTER);
+    textSize(100);
     
     gui = new ControlP5(this);
     startScreen = new StartScreen(gui);
-    gameScreen = new GameScreen();
+    gameScreen = new GameScreen(this);
 }
 
 void draw() {
@@ -23,8 +24,7 @@ void draw() {
     } else{
     //game
       gameScreen.run();
-    }   
-    //game over
+    }
 }
 
 public void controlEvent(ControlEvent event){
